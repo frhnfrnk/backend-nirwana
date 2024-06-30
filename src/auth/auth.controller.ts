@@ -1,29 +1,19 @@
-// src/auth/auth.controller.ts
-import { Controller, Post, Body, ConflictException } from '@nestjs/common';
+import { Controller, Request, Post, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { LoginDto } from './dto/login.dto';
+import { LocalAuthGuard } from './guards/local-auth.guard';
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  @UseGuards(LocalAuthGuard)
   @Post('login')
-  async login(@Body() loginDto: LoginDto) {
-    return this.authService.login(loginDto);
+  async login(@Request() req) {
+    return this.authService.login(req.user);
   }
 
   @Post('register')
-  async register(
-    @Body('username') username: string,
-    @Body('password') password: string,
-  ): Promise<any> {
-    try {
-      return this.authService.register(username, password);
-    } catch (error) {
-      if (error instanceof ConflictException) {
-        throw new ConflictException(error.message);
-      }
-      throw error;
-    }
+  async register(@Request() req) {
+    return this.authService.register(req.body);
   }
 }
