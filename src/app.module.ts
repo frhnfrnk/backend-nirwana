@@ -5,6 +5,7 @@ import { UmkmModule } from './umkm/umkm.module';
 import { AuthModule } from './auth/auth.module';
 import { WisataModule } from './wisata/wisata.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { DesaModule } from './desa/desa.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
     UmkmModule,
     AuthModule,
     WisataModule,
+    DesaModule,
     CloudinaryModule,
   ],
 })
