@@ -6,4 +6,5 @@ export class UpdateWisataDto {
   readonly latitude?: number;
   readonly longitude?: number;
   readonly image?: string;
+  readonly desa?: string;
 }

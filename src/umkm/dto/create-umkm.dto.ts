@@ -11,4 +11,5 @@ export class CreateUmkmDto {
   readonly email?: string;
   readonly facebook?: string;
   readonly instagram?: string;
+  readonly desa: string;
 }

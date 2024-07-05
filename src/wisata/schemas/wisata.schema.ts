@@ -1,13 +1,12 @@
+// src/schemas/wisata.schema.ts
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
+import { Desa } from 'src/desa/schema/desa.schema';
 
 @Schema()
 export class Wisata extends Document {
   @Prop({ required: true })
   name: string;
-
-  @Prop({ required: true })
-  category: string;
 
   @Prop({ required: true })
   description: string;
@@ -22,7 +21,25 @@ export class Wisata extends Document {
   longitude: number;
 
   @Prop({ required: true })
+  phoneNumber: string;
+
+  @Prop({ required: true })
   image: string;
+
+  @Prop()
+  website: string;
+
+  @Prop()
+  email: string;
+
+  @Prop()
+  facebook: string;
+
+  @Prop()
+  instagram: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'Desa', required: true })
+  desa: Desa;
 }
 
 export const WisataSchema = SchemaFactory.createForClass(Wisata);

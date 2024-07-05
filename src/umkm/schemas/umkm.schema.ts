@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
+import { Desa } from 'src/desa/schema/desa.schema';
 
 @Schema()
 export class Umkm extends Document {
@@ -26,6 +27,9 @@ export class Umkm extends Document {
 
   @Prop({ required: true })
   image: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'Desa', required: true })
+  desa: Desa;
 
   @Prop()
   website: string;
