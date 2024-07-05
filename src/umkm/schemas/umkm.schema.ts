@@ -26,7 +26,7 @@ export class Umkm extends Document {
   phoneNumber: string;
 
   @Prop({ required: true })
-  image: string;
+  image: string[];
 
   @Prop({ type: Types.ObjectId, ref: 'Desa', required: true })
   desa: Desa;
