@@ -39,7 +39,7 @@ export class CreateUmkmDto {
   @IsNotEmpty()
   readonly phoneNumber: string;
 
-  @IsString()
+  @IsArray()
   @IsNotEmpty()
   readonly image: string[];
 
@@ -48,7 +48,6 @@ export class CreateUmkmDto {
   readonly website?: string;
 
   @IsOptional()
-  @IsArray()
   @IsEmail()
   readonly email?: string;
 

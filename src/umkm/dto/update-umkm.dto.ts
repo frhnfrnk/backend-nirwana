@@ -41,7 +41,7 @@ export class UpdateUmkmDto {
   readonly phoneNumber?: string;
 
   @IsOptional()
-  @IsString()
+  @IsArray()
   readonly image?: string[];
 
   @IsOptional()
@@ -49,7 +49,6 @@ export class UpdateUmkmDto {
   readonly website?: string;
 
   @IsOptional()
-  @IsArray()
   @IsEmail()
   readonly email?: string;
 
