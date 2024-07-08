@@ -18,8 +18,8 @@ import { Wisata } from './schemas/wisata.schema';
 export class WisataController {
   constructor(private readonly wisataService: WisataService) {}
 
-  @UseGuards(AuthGuard())
   @Post()
+  @UseGuards(AuthGuard())
   async create(@Body() createWisataDto: CreateWisataDto): Promise<Wisata> {
     return this.wisataService.create(createWisataDto);
   }
@@ -35,6 +35,7 @@ export class WisataController {
   }
 
   @Put(':id')
+  @UseGuards(AuthGuard())
   async update(
     @Param('id') id: string,
     @Body() updateWisataDto: UpdateWisataDto,
@@ -43,6 +44,7 @@ export class WisataController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard())
   async remove(@Param('id') id: string): Promise<void> {
     return this.wisataService.remove(id);
   }

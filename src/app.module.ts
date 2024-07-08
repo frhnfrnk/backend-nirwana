@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { WisataModule } from './wisata/wisata.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { DesaModule } from './desa/desa.module';
+import { BudayaModule } from './budaya/budaya.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { DesaModule } from './desa/desa.module';
     AuthModule,
     WisataModule,
     DesaModule,
+    BudayaModule,
     CloudinaryModule,
   ],
 })
