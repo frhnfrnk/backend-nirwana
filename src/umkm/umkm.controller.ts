@@ -18,8 +18,8 @@ import { AuthGuard } from '@nestjs/passport';
 export class UmkmController {
   constructor(private readonly umkmService: UmkmService) {}
 
+  @Pot()
   @UseGuards(AuthGuard())
-  @Post()
   async create(@Body() createUmkmDto: CreateUmkmDto): Promise<Umkm> {
     return this.umkmService.create(createUmkmDto);
   }
@@ -35,6 +35,7 @@ export class UmkmController {
   }
 
   @Put(':id')
+  @UseGuards(AuthGuard())
   async update(
     @Param('id') id: string,
     @Body() updateUmkmDto: UpdateUmkmDto,
@@ -43,6 +44,7 @@ export class UmkmController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard())
   async remove(@Param('id') id: string): Promise<void> {
     return this.umkmService.remove(id);
   }
