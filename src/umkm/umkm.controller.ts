@@ -18,7 +18,7 @@ import { AuthGuard } from '@nestjs/passport';
 export class UmkmController {
   constructor(private readonly umkmService: UmkmService) {}
 
-  @Pot()
+  @Post()
   @UseGuards(AuthGuard())
   async create(@Body() createUmkmDto: CreateUmkmDto): Promise<Umkm> {
     return this.umkmService.create(createUmkmDto);
