@@ -24,7 +24,7 @@ export class Wisata extends Document {
   longitude: number;
 
   @Prop({ required: true })
-  image: string;
+  image: string[];
 
   @Prop({ type: Types.ObjectId, ref: 'Desa', required: true })
   desa: Desa;
