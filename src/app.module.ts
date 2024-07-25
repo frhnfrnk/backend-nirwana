@@ -7,6 +7,7 @@ import { WisataModule } from './wisata/wisata.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { DesaModule } from './desa/desa.module';
 import { BudayaModule } from './budaya/budaya.module';
+import { PeternakanModule } from './peternakan/peternakan.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { BudayaModule } from './budaya/budaya.module';
     DesaModule,
     BudayaModule,
     CloudinaryModule,
+    PeternakanModule,
   ],
 })
 export class AppModule {}
