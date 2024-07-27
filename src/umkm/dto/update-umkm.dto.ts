@@ -45,11 +45,11 @@ export class UpdateUmkmDto {
   readonly image?: string[];
 
   @IsOptional()
-  @IsUrl()
+  @IsString()
   readonly website?: string;
 
   @IsOptional()
-  @IsEmail()
+  @IsString()
   readonly email?: string;
 
   @IsOptional()
