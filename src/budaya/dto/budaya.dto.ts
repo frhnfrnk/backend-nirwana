@@ -9,6 +9,10 @@ export class CreateBudayaDto {
 
   @IsString()
   @IsNotEmpty()
+  author: string;
+
+  @IsString()
+  @IsNotEmpty()
   description: string;
 
   @IsString()

@@ -9,6 +9,9 @@ export class Budaya extends Document {
   name: string;
 
   @Prop({ required: true })
+  author: string;
+
+  @Prop({ required: true })
   description: string;
 
   @Prop({ required: true })
