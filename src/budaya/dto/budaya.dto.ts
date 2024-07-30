@@ -1,5 +1,5 @@
 // src/dto/create-budaya.dto.ts
-import { IsString, IsNotEmpty, IsMongoId } from 'class-validator';
+import { IsString, IsNotEmpty, IsMongoId, IsArray } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 
 export class CreateBudayaDto {
@@ -16,6 +16,10 @@ export class CreateBudayaDto {
   category: string;
 
   @IsString()
+  @IsNotEmpty()
+  content: string;
+
+  @IsArray()
   @IsNotEmpty()
   image: string;
 

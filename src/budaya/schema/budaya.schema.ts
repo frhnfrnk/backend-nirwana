@@ -15,7 +15,10 @@ export class Budaya extends Document {
   category: string;
 
   @Prop({ required: true })
-  image: string;
+  content: string;
+
+  @Prop({ required: true })
+  image: string[];
 
   @Prop({ type: Types.ObjectId, ref: 'Desa', required: true })
   desa: Desa;
