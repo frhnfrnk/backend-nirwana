@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Peternakan } from './schemas/peternakan.schema';
 import { Model } from 'mongoose';
 import { CreatePeternakanDto } from './dto/create-peternakan.dto';
+import axios from 'axios';
 
 @Injectable()
 export class PeternakanService {
@@ -10,9 +11,33 @@ export class PeternakanService {
     @InjectModel(Peternakan.name) private peternakanModel: Model<Peternakan>,
   ) {}
 
+  private readonly locationIQApiKey = process.env.LOCATIONIQ_API_KEY;
+
   async create(createPeternakanDto: CreatePeternakanDto): Promise<Peternakan> {
-    const createdPeternakan = new this.peternakanModel(createPeternakanDto);
+    const locationData = await this.reverseGeocode(
+      createPeternakanDto.latitude,
+      createPeternakanDto.longitude,
+    );
+
+    const peternakan = {
+      ...createPeternakanDto,
+      address: locationData.display_name,
+      desa: locationData.address.village,
+    };
+
+    const createdPeternakan = new this.peternakanModel(peternakan);
     return createdPeternakan.save();
+  }
+
+  async reverseGeocode(lat: number, lon: number): Promise<any> {
+    const url = `https://us1.locationiq.com/v1/reverse.php?key=${this.locationIQApiKey}&lat=${lat}&lon=${lon}&format=json`;
+
+    try {
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      throw new Error('Error fetching location data');
+    }
   }
 
   async findAll(): Promise<Peternakan[]> {

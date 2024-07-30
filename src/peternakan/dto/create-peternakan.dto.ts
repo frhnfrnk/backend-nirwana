@@ -23,10 +23,6 @@ export class CreatePeternakanDto {
   @IsNotEmpty()
   readonly description: string;
 
-  @IsString()
-  @IsNotEmpty()
-  readonly address: string;
-
   @IsNumber()
   @IsLatitude()
   readonly latitude: number;
@@ -38,8 +34,4 @@ export class CreatePeternakanDto {
   @IsArray()
   @IsOptional()
   readonly image: string[];
-
-  @IsString()
-  @IsNotEmpty()
-  readonly desa: string;
 }
