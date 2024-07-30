@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { Desa } from 'src/desa/schema/desa.schema';
 
 @Schema()
 export class Peternakan extends Document {
@@ -25,8 +24,8 @@ export class Peternakan extends Document {
   @Prop({ required: false })
   image: string[];
 
-  @Prop({ type: Types.ObjectId, ref: 'Desa', required: true })
-  desa: Desa;
+  @Prop({ required: true })
+  desa: string;
 }
 
 export const PeternakanSchema = SchemaFactory.createForClass(Peternakan);
