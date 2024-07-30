@@ -22,10 +22,7 @@ export class Peternakan extends Document {
   @Prop({ required: true })
   longitude: number;
 
-  @Prop({ required: true })
-  phoneNumber: string;
-
-  @Prop({ required: true })
+  @Prop({ required: false })
   image: string[];
 
   @Prop({ type: Types.ObjectId, ref: 'Desa', required: true })

@@ -36,7 +36,7 @@ export class CreatePeternakanDto {
   readonly longitude: number;
 
   @IsArray()
-  @IsNotEmpty()
+  @IsOptional()
   readonly image: string[];
 
   @IsString()

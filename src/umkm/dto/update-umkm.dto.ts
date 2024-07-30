@@ -3,8 +3,6 @@ import {
   IsOptional,
   IsNumber,
   IsArray,
-  IsEmail,
-  IsUrl,
   IsLatitude,
   IsLongitude,
 } from 'class-validator';
