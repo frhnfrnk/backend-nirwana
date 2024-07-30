@@ -23,8 +23,8 @@ export class Budaya extends Document {
   @Prop({ required: true })
   image: string[];
 
-  @Prop({ type: Types.ObjectId, ref: 'Desa', required: true })
-  desa: Desa;
+  @Prop({ required: true })
+  desa: string;
 }
 
 export const BudayaSchema = SchemaFactory.createForClass(Budaya);
