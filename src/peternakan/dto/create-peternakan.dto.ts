@@ -34,4 +34,32 @@ export class CreatePeternakanDto {
   @IsArray()
   @IsOptional()
   readonly image: string[];
+
+  @IsNumber()
+  @IsNotEmpty()
+  readonly jantan_anakan: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  readonly betina_anakan: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  readonly total: number;
+
+  @IsString()
+  @IsNotEmpty()
+  readonly kondisi_hewan: string;
+
+  @IsString()
+  @IsNotEmpty()
+  readonly kondisi_kandang: string;
+
+  @IsString()
+  @IsNotEmpty()
+  readonly status_vaksinasi: string;
+
+  @IsString()
+  @IsNotEmpty()
+  readonly obat_cacing: string;
 }

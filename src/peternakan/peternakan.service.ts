@@ -4,6 +4,7 @@ import { Peternakan } from './schemas/peternakan.schema';
 import { Model } from 'mongoose';
 import { CreatePeternakanDto } from './dto/create-peternakan.dto';
 import axios from 'axios';
+import { UpdatePeternakanDto } from './dto/update-peternakan.dto';
 
 @Injectable()
 export class PeternakanService {
@@ -53,5 +54,32 @@ export class PeternakanService {
       throw new NotFoundException(`Wisata with ID "${id}" not found`);
     }
     return wisata;
+  }
+
+  async update(
+    updateDto: UpdatePeternakanDto,
+    id: string,
+  ): Promise<Peternakan> {
+    let locationData;
+    if (updateDto.latitude && updateDto.longitude) {
+      locationData = await this.reverseGeocode(
+        updateDto.latitude,
+        updateDto.longitude,
+      );
+    }
+    const newUpdateDto = {
+      ...updateDto,
+      address: locationData ? locationData.display_name : undefined,
+      desa: locationData ? locationData.address.village : undefined,
+    };
+    const updatedPeternakan = await this.peternakanModel.findByIdAndUpdate(
+      id,
+      newUpdateDto,
+      { new: true },
+    );
+    if (!updatedPeternakan) {
+      throw new NotFoundException(`Wisata with ID "${id}" not found`);
+    }
+    return updatedPeternakan;
   }
 }

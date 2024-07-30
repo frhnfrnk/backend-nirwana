@@ -3,8 +3,6 @@ import {
   IsOptional,
   IsNumber,
   IsArray,
-  IsEmail,
-  IsUrl,
   IsLatitude,
   IsLongitude,
 } from 'class-validator';
@@ -43,4 +41,40 @@ export class UpdatePeternakanDto {
   @IsOptional()
   @IsString()
   readonly desa?: string;
+
+  @IsOptional()
+  @IsNumber()
+  readonly jantan_dewasa?: number;
+
+  @IsOptional()
+  @IsNumber()
+  readonly betina_dewasa?: number;
+
+  @IsOptional()
+  @IsNumber()
+  readonly jantan_anakan?: number;
+
+  @IsOptional()
+  @IsNumber()
+  readonly betina_anakan?: number;
+
+  @IsOptional()
+  @IsNumber()
+  readonly total?: number;
+
+  @IsOptional()
+  @IsString()
+  readonly kondisi_hewan?: string;
+
+  @IsOptional()
+  @IsString()
+  readonly kondisi_kandang?: string;
+
+  @IsOptional()
+  @IsString()
+  readonly status_vaksinasi?: string;
+
+  @IsOptional()
+  @IsString()
+  readonly obat_cacing?: string;
 }
