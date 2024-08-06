@@ -27,7 +27,7 @@ export class CreateBudayaDto {
   @IsNotEmpty()
   image: string;
 
-  @IsMongoId()
+  @IsString()
   @IsNotEmpty()
   desa: string;
 }
