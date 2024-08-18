@@ -17,7 +17,7 @@ export class AuthService {
   ) {}
 
   async signUp(signUpDto: SignUpDto): Promise<{ token: string; user: User }> {
-    const { username, password } = signUpDto;
+    const { username, password, desa } = signUpDto;
 
     const hashedPassword = await bycrypt.hash(password, 10);
 
@@ -29,9 +29,17 @@ export class AuthService {
       throw new UnauthorizedException('Email already exists');
     }
 
+    const countUserInDesa = await this.checkUserCountInDesa(desa);
+    if (countUserInDesa.length >= 3) {
+      throw new UnauthorizedException(
+        'User count in desa has reached the limit',
+      );
+    }
+
     const user = await this.userModel.create({
       username,
       password: hashedPassword,
+      desa,
     });
 
     const token = this.jwtService.sign({ id: user._id });
@@ -39,6 +47,11 @@ export class AuthService {
     user.password = undefined;
 
     return { token, user };
+  }
+
+  async checkUserCountInDesa(desa: string): Promise<User[]> {
+    const users = await this.userModel.find({ desa });
+    return users;
   }
 
   async login(loginDto: LoginDto): Promise<{ token: string; user: User }> {
